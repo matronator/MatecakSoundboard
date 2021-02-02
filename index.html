@@ -16,7 +16,12 @@
       <nav>
       </nav>
       <section>
-        <button id="start">Play</button> <button id="tempo">Tempo - Slow</button> <button id="beat">Beat - 1</button> <button id="stop">Stop</button>
+        <div class="beat-control" id="beatControl">
+          <button id="beatStart">Play</button>
+          <button id="beatTempo" data-tempo-selected="76">76 BPM</button>
+          <button id="beatVariation" data-variation-selected="1">Beat 1</button>
+          <button id="beatStop">Stop</button>
+        </div>
         <div class="soundboard">
           <div class="pad" id="00">Ale porno né</div>
           <div class="pad" id="01">A víte proč?</div>
@@ -156,33 +161,10 @@
           <source src="./dist/etc/clips/43.mp3" type="audio/mpeg"></audio>
         <audio class="atd" id="au44" preload="auto">
           <source src="./dist/etc/clips/44.mp3" type="audio/mpeg"></audio>
-
-        <audio id="76bpm_beat01" loop preload="auto">
-          <source src="./dist/etc/beats/76bpm_beat01.mp3" type="audio/mpeg"></audio>
-        <audio id="76bpm_beat02" loop preload="auto">
-          <source src="./dist/etc/beats/76bpm_beat02.mp3" type="audio/mpeg"></audio>
-        <audio id="76bpm_beat03" loop preload="auto">
-          <source src="./dist/etc/beats/76bpm_beat03.mp3" type="audio/mpeg"></audio>
-        <audio id="76bpm_beat04" loop preload="auto">
-          <source src="./dist/etc/beats/76bpm_beat04.mp3" type="audio/mpeg"></audio>
-        <audio id="84bpm_beat01" loop preload="auto">
-          <source src="./dist/etc/beats/84bpm_beat01.mp3" type="audio/mpeg"></audio>
-        <audio id="84bpm_beat02" loop preload="auto">
-          <source src="./dist/etc/beats/84bpm_beat02.mp3" type="audio/mpeg"></audio>
-        <audio id="84bpm_beat03" loop preload="auto">
-          <source src="./dist/etc/beats/84bpm_beat03.mp3" type="audio/mpeg"></audio>
-        <audio id="84bpm_beat04" loop preload="auto">
-          <source src="./dist/etc/beats/84bpm_beat04.mp3" type="audio/mpeg"></audio>
-        <audio id="92bpm_beat01" loop preload="auto">
-          <source src="./dist/etc/beats/92bpm_beat01.mp3" type="audio/mpeg"></audio>
-        <audio id="92bpm_beat02" loop preload="auto">
-          <source src="./dist/etc/beats/92bpm_beat02.mp3" type="audio/mpeg"></audio>
-        <audio id="92bpm_beat03" loop preload="auto">
-          <source src="./dist/etc/beats/92bpm_beat03.mp3" type="audio/mpeg"></audio>
-        <audio id="92bpm_beat04" loop preload="auto">
-          <source src="./dist/etc/beats/92bpm_beat04.mp3" type="audio/mpeg"></audio>
       </div> -->
     </div>
+
+    <script defer src="./dist/build/index.js"></script>
   </body>
 
 </html>
