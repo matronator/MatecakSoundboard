@@ -1,0 +1,28 @@
+.beat-control {
+  margin: 5px auto;
+  width: 70%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-content: space-around;
+  grid-gap: 10px;
+  & .btn {
+    padding: 6px 12px;
+    background-color: var(--dark-blue);
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 200;
+    letter-spacing: 2px;
+    font-size: 0.75rem;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  & .btn-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    & .btn:first-child {
+      border-right: 1px solid var(--dark);
+    }
+  }
+}

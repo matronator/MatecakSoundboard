@@ -4,11 +4,15 @@
   grid-gap: 10px;
   & .pad {
     background-color: var(--blue);
-    height: 80px;
+    /* height: 80px; */
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    font-size: 0.875rem;
   }
 }

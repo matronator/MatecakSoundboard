@@ -1,9 +1,10 @@
 import { Howl, Howler } from 'howler'
 
 const baseSrc = `dist/audio/`
+const clipsSrc = `${baseSrc}clips/`
 const beatsSrc = `${baseSrc}beats/`
 
-const tempos = [76, 84, 92]
+const tempos = [70, 76, 84, 90, 92]
 const variations = [1, 2, 3, 4]
 const beats = []
 
@@ -16,10 +17,26 @@ for (let i = 1; i <= 4; i++) {
       beat: new Howl({
         src: `${beatsSrc}${tempo}bpm_beat0${i}.mp3`,
         loop: true,
+        volume: 0.8
       })
     }
   })
 }
+
+const board = document.getElementById(`soundboard`)
+const pads = board.querySelectorAll(`.pad`)
+
+const clips = []
+
+pads.forEach(pad => {
+  clips[pad.id] = new Howl({
+    src: `${clipsSrc}${pad.id}.mp3`,
+    loop: false,
+  })
+  pad.addEventListener(`click`, e => {
+    clips[pad.id].play()
+  })
+})
 
 const playButton = document.getElementById(`beatStart`)
 const stopButton = document.getElementById(`beatStop`)
