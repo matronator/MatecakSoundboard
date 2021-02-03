@@ -1,2 +1,4 @@
 old.html
 snd_orig/
+node_modules
+dist/build
