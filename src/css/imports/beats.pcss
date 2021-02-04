@@ -1,11 +1,31 @@
 .beat-control {
-  margin: 5px auto;
-  width: 70%;
+  margin: 10px auto;
+  width: 100%;
+  padding: 0 50px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  align-items: center;
-  justify-content: space-around;
-  grid-gap: 10px;
+  grid-template-areas: "bpm  bpm  controls"
+                       "vari vari controls";
+  grid-column-gap: 10px;
+  grid-row-gap: 5px;
+  @media (--gt-1280) {
+    grid-template-areas: "bpm vari controls";
+  }
+  @media (--lt-780) {
+    padding: 0 30px;
+  }
+  @media (--lt-640) {
+    padding: 0 15px;
+  }
+  @media (--lt-480) {
+    padding: 0 5px;
+  }
+  @media (--lt-360) {
+    grid-template-areas: "bpm"
+                         "vari"
+                         "controls";
+    padding: 0;
+    grid-row-gap: 2px;
+  }
   & .btn {
     padding: 6px 12px;
     background-color: var(--dark-blue);
@@ -14,15 +34,33 @@
     font-weight: 200;
     letter-spacing: 2px;
     font-size: 0.75rem;
+    white-space: nowrap;
+    word-break: keep-all;
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
+    align-items: center;
+    justify-content: center;
+    display: grid;
   }
   & .btn-group {
     display: grid;
+    grid-gap: 1px;
+    grid-template-rows: 1fr;
     grid-template-columns: 1fr 1fr;
-    & .btn:first-child {
-      border-right: 1px solid var(--dark);
+    @media (--lt-360) {
+      grid-template-rows: 1fr;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 4px;
     }
+  }
+  & #beatTempo {
+    grid-area: bpm;
+  }
+  & #beatVariation {
+    grid-area: vari;
+  }
+  & #beatControls {
+    grid-area: controls;
   }
 }

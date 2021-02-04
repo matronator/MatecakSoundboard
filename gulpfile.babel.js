@@ -39,198 +39,201 @@ const server = browserSync.create()
 
 // create array of postcss processors (order is important)
 const cssProcessors = [
-    postcssImport, // must be the first
-    postcssCustomMedia, // https://drafts.csswg.org/mediaqueries-5/#custom-mq
-    postcssNest,
+  postcssImport, // must be the first
+  postcssCustomMedia, // https://drafts.csswg.org/mediaqueries-5/#custom-mq
+  postcssNest,
 ]
 // enable additional processors on production (saves time on development)
-    .concat(isProduction
-        ? [
-            postscssAutoprefixer, // uses browser list option from package.json
-            postcssNano,
-        ]
-        : [])
+  .concat(isProduction
+    ? [
+      postscssAutoprefixer, // uses browser list option from package.json
+      postcssNano,
+    ]
+    : [])
 
 const config = {
-    serverUrl: process.env.HOST || `http://127.0.0.1:8000/`,
-    proxyPort: 3000,
-    buildDest: `dist/build`,
-    js: {
-        entry: `src/js/*.js`,
-        watch: [
-            `src/js/**/*.js`,
-        ],
-    },
-    css: {
-        entry: `src/css/*.pcss`,
-        watch: [
-            `src/css/**/*.pcss`,
-        ],
-    },
-    images: {
-        entry: `src/images/**`,
-        watch: [`src/images/**`],
-        directory: `images`,
-        quality: 70, // 0 - worst, 100 - best
-    },
-    etc: {
-        entry: `src/etc/**`,
-        watch: [`src/etc/**`],
-        directory: `etc`,
-    },
-    icons: {
-        entry: `src/icons/*.svg`,
-        watch: [`src/icons/*.svg`],
-        spriteConfig: {
-            mode: {
-                inline: true,
-                symbol: {
-                    // generate right into the build folder
-                    dest: ``,
-                    sprite: `sprite.svg`,
-                },
-            },
+  serverUrl: process.env.HOST || `http://127.0.0.1:8000/`,
+  proxyPort: 3000,
+  buildDest: `dist/build`,
+  js: {
+    entry: `src/js/*.js`,
+    watch: [
+      `src/js/**/*.js`,
+    ],
+  },
+  css: {
+    entry: `src/css/*.pcss`,
+    watch: [
+      `src/css/**/*.pcss`,
+    ],
+  },
+  images: {
+    entry: `src/images/**`,
+    watch: [`src/images/**`],
+    directory: `images`,
+    quality: 70, // 0 - worst, 100 - best
+  },
+  etc: {
+    entry: `src/etc/**`,
+    watch: [`src/etc/**`],
+    directory: `etc`,
+  },
+  icons: {
+    entry: `src/icons/*.svg`,
+    watch: [`src/icons/*.svg`],
+    spriteConfig: {
+      mode: {
+        inline: true,
+        symbol: {
+          // generate right into the build folder
+          dest: ``,
+          sprite: `sprite.svg`,
         },
+      },
     },
-    templates: {
-        watch: [
-            `*.html`,
-        ],
-    },
-    manifest: {
-        base: `${process.cwd()}/dist/build`,
-        path: `${process.cwd()}/dist/build/asset-manifest.json`,
-        merge: true,
-    },
+  },
+  templates: {
+    watch: [
+      `*.html`,
+    ],
+  },
+  manifest: {
+    base: `${process.cwd()}/dist/build`,
+    path: `${process.cwd()}/dist/build/asset-manifest.json`,
+    merge: true,
+  },
 }
 
 /*
  * Private tasks
  * */
 function reload(done) {
-    server.reload()
-    done()
+  server.reload()
+  done()
 }
 
 async function serve() {
-    await server.init({
-        proxy: config.serverUrl,
-        port: config.proxyPort,
-        open: true,
-        notify: false,
-    })
+  await server.init({
+    proxy: config.serverUrl,
+    port: config.proxyPort,
+    open: true,
+    notify: false,
+  })
 }
 
 function clean(done) {
-    del([`${config.buildDest}/**/*`]).then(() => done())
+  del([`${config.buildDest}/**/*`]).then(() => done())
 }
 
 function js() {
-    return src(config.js.entry, { read: false }) // no need of reading because browserify does
-        .pipe(tap(file => {
-            // transform files using gulp-tap
-            file.contents = browserify(file.path, {
-                transform: [babelify, envify],
-                debug: isProduction, // enable source maps on production
-            }).bundle()
-        }))
-        .pipe(buffer()) // need this if you want to continue using the stream with other plugins
-        .pipe(isProduction ? sourcemaps.init({ loadMaps: true }) : noop())
-        .pipe(isProduction ? cacheBuster() : noop()) // cache bust on production
-        .pipe(isProduction ? uglify() : noop())
-        .pipe(isProduction ? sourcemaps.write('.', { includeContent: false }) : noop())
-        .pipe(isProduction ? dest(config.buildDest) : noop()) // this build is for manifest.json
-        .pipe(isProduction
-            ? cacheBuster.manifest(config.manifest.path, config.manifest)
-            : noop())
-        .pipe(dest(config.buildDest))
+  return src(config.js.entry, { read: false }) // no need of reading because browserify does
+    .pipe(tap(file => {
+      // transform files using gulp-tap
+      file.contents = browserify(file.path, {
+        transform: [babelify, envify],
+        debug: isProduction, // enable source maps on production
+      }).bundle()
+    }))
+    .pipe(buffer()) // need this if you want to continue using the stream with other plugins
+    .pipe(isProduction ? sourcemaps.init({ loadMaps: true }) : noop())
+    .pipe(isProduction ? cacheBuster() : noop()) // cache bust on production
+    .pipe(isProduction ? uglify() : noop())
+    .pipe(isProduction ? sourcemaps.write('.', { includeContent: false }) : noop())
+    .pipe(isProduction ? dest(config.buildDest) : noop()) // this build is for manifest.json
+    .pipe(isProduction
+      ? cacheBuster.manifest(config.manifest.path, config.manifest)
+      : noop())
+    .pipe(dest(config.buildDest))
 }
 
 function css() {
-    return src(config.css.entry)
-        .pipe(isProduction ? sourcemaps.init() : noop()) // generate source-maps only for production
-        .pipe(isProduction ? cacheBuster() : noop()) // cache bust on production
-        .pipe(postcss(cssProcessors))
-        .pipe(isProduction ? sourcemaps.write('.', { includeContent: false }) : noop())
-        .pipe(rename(path => {
-            path.extname = `.css`
-        }))
-        .pipe(isProduction ? dest(config.buildDest) : noop()) // this build is for manifest.json
-        .pipe(isProduction
-            ? cacheBuster.manifest(config.manifest.path, config.manifest)
-            : noop())
-        .pipe(dest(config.buildDest))
+  return src(config.css.entry)
+    .pipe(rename(path => {
+      path.extname = `.css`
+    }))
+    .pipe(isProduction ? sourcemaps.init() : noop()) // generate source-maps only for production
+    .pipe(isProduction ? cacheBuster() : noop()) // cache bust on production
+    .pipe(postcss(cssProcessors))
+    .pipe(rename(path => {
+      path.extname = `.css`
+    }))
+    .pipe(isProduction ? sourcemaps.write('.', { includeContent: false }) : noop())
+    .pipe(isProduction ? dest(config.buildDest) : noop()) // this build is for manifest.json
+    .pipe(isProduction
+      ? cacheBuster.manifest(config.manifest.path, config.manifest)
+      : noop())
+    .pipe(dest(config.buildDest))
 }
 
 function icons() {
-    return src(config.icons.entry)
-        .pipe(sprite(config.icons.spriteConfig))
-        .pipe(dest(config.buildDest))
+  return src(config.icons.entry)
+    .pipe(sprite(config.icons.spriteConfig))
+    .pipe(dest(config.buildDest))
 }
 
 function images() {
-    return src(config.images.entry, {
-        since: lastRun(images),
-    })
-        .pipe(cache(imagemin([
-            imagemin.mozjpeg({
-                progressive: true,
-                quality: config.images.quality,
-            }),
-            imagemin.optipng({ optimizationLevel: 5 }),
-            imagemin.svgo({
-                plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
-            }),
-        ])))
-        .pipe(dest(config.buildDest + config.images.directory))
+  return src(config.images.entry, {
+    since: lastRun(images),
+  })
+    .pipe(cache(imagemin([
+      imagemin.mozjpeg({
+        progressive: true,
+        quality: config.images.quality,
+      }),
+      imagemin.optipng({ optimizationLevel: 5 }),
+      imagemin.svgo({
+        plugins: [{ removeViewBox: true }, { cleanupIDs: false }],
+      }),
+    ])))
+    .pipe(dest(config.buildDest + config.images.directory))
 }
 
 function etc() {
-    return src(config.etc.entry).pipe(dest(config.buildDest + config.etc.directory))
+  return src(config.etc.entry).pipe(dest(config.buildDest + config.etc.directory))
 }
 
 export async function createDevManifest() {
-    // asset manifest is not generated during development in order to save time
-    // nevertheless, it is required by php script to load the assets
-    const asyncGlob = util.promisify(glob)
-    const asyncWrite = util.promisify(fs.writeFile)
-    const cssFiles = await asyncGlob(config.css.entry)
-    const jsFiles = await asyncGlob(config.js.entry)
-    const manifest = [...cssFiles, ...jsFiles].reduce((acc, path) => {
-        const filename = path.split(`/`).pop()
-        acc[filename] = filename
-        return acc
-    }, {})
-    await util.promisify(fs.mkdir)(config.manifest.base, { recursive: true })
-    await asyncWrite(config.manifest.path, JSON.stringify(manifest, null, 4))
+  // asset manifest is not generated during development in order to save time
+  // nevertheless, it is required by php script to load the assets
+  const asyncGlob = util.promisify(glob)
+  const asyncWrite = util.promisify(fs.writeFile)
+  const cssFiles = await asyncGlob(config.css.entry.replace(/(\.pcss)/g, `.css`))
+  const jsFiles = await asyncGlob(config.js.entry)
+  const manifest = [...cssFiles, ...jsFiles].reduce((acc, path) => {
+    const filename = path.split(`/`).pop()
+    acc[filename.replace(/(\.pcss)/g, `.css`)] = filename.replace(/(\.pcss)/g, `.css`)
+    return acc
+  }, {})
+  await util.promisify(fs.mkdir)(config.manifest.base, { recursive: true })
+  await asyncWrite(config.manifest.path, JSON.stringify(manifest, null, 4).replace(/(\.pcss)/g, `.css`))
 }
 
 export async function clearCache() {
-    await cache.clearAll()
+  await cache.clearAll()
 }
 
 function watchFiles() {
-    watch(config.css.watch, series(css, reload))
-    watch(config.js.watch, series(js, reload))
-    watch(config.icons.watch, series(icons, reload))
-    watch(config.images.watch, series(images, reload))
-    watch(config.templates.watch, series(reload))
+  watch(config.css.watch, series(css, reload))
+  watch(config.js.watch, series(js, reload))
+  watch(config.icons.watch, series(icons, reload))
+  watch(config.images.watch, series(images, reload))
+  watch(config.templates.watch, series(reload))
 }
 
 /*
  * Public task
  * */
 export default isProduction
-    ? series(
-        clean,
-        css, // not parallel because manifest.json creation
-        js, // not parallel because manifest.json creation
-        parallel(icons, images, etc)
-    )
-    : series(
-        clean,
-        parallel(js, css),
-        createDevManifest,
-        parallel(icons, serve, images, etc),
-        watchFiles
-    )
+  ? series(
+    clean,
+    css, // not parallel because manifest.json creation
+    js, // not parallel because manifest.json creation
+    parallel(icons, images, etc)
+  )
+  : series(
+    clean,
+    parallel(js, css),
+    createDevManifest,
+    parallel(icons, serve, images, etc),
+    watchFiles
+  )

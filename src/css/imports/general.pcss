@@ -5,6 +5,13 @@
   --dark-blue: #1d5677;
 }
 
+@custom-media --lt-360 (max-width: 360px);
+@custom-media --lt-480 (max-width: 480px);
+@custom-media --lt-560 (max-width: 560px);
+@custom-media --lt-640 (max-width: 640px);
+@custom-media --lt-780 (max-width: 780px);
+@custom-media --gt-1280 (min-width: 1280px);
+
 html {
   width: 100vw;
   min-height: 100vh;
@@ -27,4 +34,13 @@ body {
   flex-direction: column;
   align-items: stretch;
   justify-content: center;
+  @media (--lt-780) {
+    padding: 10px 60px;
+  }
+  @media (--lt-560) {
+    padding: 10px 30px;
+  }
+  @media (--lt-480) {
+    padding: 5px 10px;
+  }
 }
