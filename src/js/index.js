@@ -48,13 +48,17 @@ playButton.addEventListener(`click`, e => {
   const selectedVariation = document.querySelector(`[data-variation-selected]`).dataset.variationSelected
   const selectedBeat = beats[selectedVariation][selectedTempo]
   if (!selectedBeat.beat.playing()) {
+    playButton.classList.add(`is-playing`)
+    playButton.innerHTML = `Stop`
     Howler.stop()
     selectedBeat.beat.play()
+  } else {
+    beatStop()
   }
 })
 
 stopButton.addEventListener(`click`, e => {
-  Howler.stop()
+  beatStop()
 })
 
 tempoButton.addEventListener(`click`, e => {
@@ -98,3 +102,9 @@ variationButton.addEventListener(`click`, e => {
     currentBeat.beat.stop()
   }
 })
+
+function beatStop() {
+  Howler.stop()
+  playButton.classList.remove(`is-playing`)
+  playButton.innerHTML = `Play`
+}
