@@ -108,14 +108,14 @@ playButton.addEventListener(`click`, e => {
     selectedBeat.beat.play()
   } else {
     beatStop()
-    pads.forEach(pad => {
-      const progress = pad.querySelector(`div.progress`)
-      if (progress && progress instanceof HTMLElement) {
-        progress.style.width = `0%`
-      }
-      pad.classList.remove(`isPlaying`)
-    })
   }
+  pads.forEach(pad => {
+    const progress = pad.querySelector(`div.progress`)
+    if (progress && progress instanceof HTMLElement) {
+      progress.style.width = `0%`
+    }
+    pad.classList.remove(`isPlaying`)
+  })
 })
 
 stopButton.addEventListener(`click`, e => {
