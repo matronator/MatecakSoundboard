@@ -17,7 +17,7 @@ for (let i = 1; i <= 4; i++) {
       beat: new Howl({
         src: `${beatsSrc}${tempo}bpm_beat0${i}.mp3`,
         loop: true,
-        volume: 0.8
+        volume: 0.75
       })
     }
   })
@@ -26,17 +26,71 @@ for (let i = 1; i <= 4; i++) {
 const board = document.getElementById(`soundboard`)
 const pads = board.querySelectorAll(`.pad`)
 
+const sounds = []
 const clips = []
+const overlays = []
 
 pads.forEach(pad => {
-  clips[pad.id] = new Howl({
+  sounds[pad.id] = new Howl({
     src: `${clipsSrc}${pad.id}.mp3`,
     loop: false,
   })
+
+  clips[pad.id] = {
+    id: null,
+    overlay: null,
+  }
+
+  requestAnimationFrame(rafStep)
+
   pad.addEventListener(`click`, e => {
-    clips[pad.id].play()
+    const snd = sounds[pad.id]
+    const elm = pad.querySelector(`div.progress`)
+
+    pad.classList.add(`isPlaying`)
+    const id = snd.play()
+
+    elm.dataset.clip = pad.id
+    elm.dataset.soundId = id
+    overlays.push(elm)
+
+    clips[pad.id].overlay = elm
+    clips[pad.id].id = id
+
+    snd.once(`end`, () => {
+      setTimeout(() => {
+        pad.classList.remove(`isPlaying`)
+      }, 34)
+      const index = overlays.indexOf(elm)
+      if (index >= 0) {
+        overlays.splice(index, 1)
+        delete clips[pad.id].overlay
+      }
+    })
   })
 })
+
+function rafStep() {
+  const activeOnly = document.querySelectorAll(`.pad.isPlaying`)
+  activeOnly.forEach(pad => {
+    const progress = pad.querySelector(`div.progress`)
+    if (progress && progress instanceof HTMLElement) {
+      const seek = sounds[pad.id].seek() || 0
+      const duration = sounds[pad.id].duration()
+      progress.style.width = `${((seek / duration) * 100) || 0}%`
+    }
+  })
+  requestAnimationFrame(rafStep)
+}
+
+// for (var i=0; i<self.sounds.length; i++) {
+//   var id = parseInt(self.sounds[i].id, 10);
+//   var offset = self._sprite[self.sounds[i].dataset.sprite][0];
+//   var seek = (self.sound.seek(id) || 0) - (offset / 1000);
+//   self.sounds[i].style.width = (((seek / self.sound.duration(id)) * 100) || 0) + '%';
+// }
+
+// requestAnimationFrame(self.step.bind(self));
 
 const playButton = document.getElementById(`beatStart`)
 const stopButton = document.getElementById(`beatStop`)
@@ -59,6 +113,13 @@ playButton.addEventListener(`click`, e => {
 
 stopButton.addEventListener(`click`, e => {
   beatStop()
+  pads.forEach(pad => {
+    const progress = pad.querySelector(`div.progress`)
+    if (progress && progress instanceof HTMLElement) {
+      progress.style.width = `0%`
+    }
+    pad.classList.remove(`isPlaying`)
+  })
 })
 
 tempoButton.addEventListener(`click`, e => {

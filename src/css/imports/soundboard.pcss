@@ -9,13 +9,14 @@
   @media (--lt-560) {
     grid-gap: 4px;
   }
-  @media (--lt-360) {
+  @media (--lt-320) {
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     grid-gap: 2px;
   }
   & .pad {
     background-color: var(--blue);
     /* height: 80px; */
+    position: relative;
     min-height: 62px;
     padding: 10px;
     display: flex;
@@ -29,9 +30,26 @@
     @media (--lt-780) {
       padding: 5px;
     }
-    @media (--lt-360) {
-      min-height: 31px;
+    @media (--lt-320) {
+      min-height: 64px;
       padding: 10px 5px;
+    }
+    /* transition: background-color ease 150ms; */
+    &:active {
+      background-color: var(--blue-active);
+      box-shadow: inset 3px 3px 5px -2px rgba(0, 0, 0, 0.5);
+    }
+    &.isPlaying {
+      background-color: var(--blue-playing);
+      box-shadow: inset 3px 3px 4px -1px rgba(0, 0, 0, 0.5);
+    }
+    & .progress {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      background-color: var(--black);
+      opacity: 0.25;
     }
   }
 }
