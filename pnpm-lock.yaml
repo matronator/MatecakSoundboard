@@ -35,7 +35,7 @@ importers:
         version: 7.12.10(@babel/core@7.12.10)
       autoprefixer:
         specifier: ^10.2.0
-        version: 10.2.4(postcss@8.4.47)
+        version: 10.2.4(postcss@8.4.48)
       babel-plugin-transform-class-properties:
         specifier: ^6.24.1
         version: 6.24.1
@@ -83,7 +83,7 @@ importers:
         version: 1.0.1
       gulp-postcss:
         specifier: ^9.0.0
-        version: 9.0.0(postcss@8.4.47)
+        version: 9.0.0(postcss@8.4.48)
       gulp-rev:
         specifier: ^9.0.0
         version: 9.0.0
@@ -103,17 +103,17 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0
       postcss:
-        specifier: ^8.4.47
-        version: 8.4.47
+        specifier: ^8.4.48
+        version: 8.4.48
       postcss-custom-media:
         specifier: ^7.0.8
         version: 7.0.8
       postcss-import:
         specifier: ^14.0.0
-        version: 14.0.0(postcss@8.4.47)
+        version: 14.0.0(postcss@8.4.48)
       postcss-nested:
         specifier: ^5.0.3
-        version: 5.0.3(postcss@8.4.47)
+        version: 5.0.3(postcss@8.4.48)
       prettier:
         specifier: ^2.2.1
         version: 2.2.1
@@ -3158,12 +3158,12 @@ packages:
   js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
-  js-yaml@3.14.1:
-    resolution: {integrity: sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==}
+  js-yaml@3.14.2:
+    resolution: {integrity: sha512-PMSmkqxr106Xa156c2M265Z+FTrPl+oxd/rgOQy2tijQeK5TxQ43psO1ZCwhVOSdnn+RzkzlRz/eY4BgJBYVpg==}
     hasBin: true
 
-  js-yaml@4.1.0:
-    resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
+  js-yaml@4.1.1:
+    resolution: {integrity: sha512-qQKT4zQxXl8lLwBtHMWwaTcGfFOZviOJet3Oy/xmGk2gZH677CJM9EvtfdSkgWcATZhj/55JZ0rmy3myCT5lsA==}
     hasBin: true
 
   jsbn@0.1.1:
@@ -4218,8 +4218,8 @@ packages:
     resolution: {integrity: sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA==}
     engines: {node: '>=6.0.0'}
 
-  postcss@8.4.47:
-    resolution: {integrity: sha512-56rxCq7G/XfB4EkXq9Egn5GCqugWvDFjafDOThIdMBsI15iqPqR5r15TfSr1YPYeEI19YeaXMCbY6u88Y76GLQ==}
+  postcss@8.4.48:
+    resolution: {integrity: sha512-GCRK8F6+Dl7xYniR5a4FYbpBzU8XnZVeowqsQFYdcXuSbChgiks7qybSkbvnaeqv0G0B+dd9/jJgH8kkLDQeEA==}
     engines: {node: ^10 || ^12 || >=14}
 
   prelude-ls@1.2.1:
@@ -6265,7 +6265,7 @@ snapshots:
       globals: 12.4.0
       ignore: 4.0.6
       import-fresh: 3.3.0
-      js-yaml: 3.14.1
+      js-yaml: 3.14.2
       lodash: 4.17.21
       minimatch: 3.0.4
       strip-json-comments: 3.1.1
@@ -6548,14 +6548,14 @@ snapshots:
 
   atob@2.1.2: {}
 
-  autoprefixer@10.2.4(postcss@8.4.47):
+  autoprefixer@10.2.4(postcss@8.4.48):
     dependencies:
       browserslist: 4.25.1
       caniuse-lite: 1.0.30001726
       colorette: 1.2.1
       fraction.js: 4.0.13
       normalize-range: 0.1.2
-      postcss: 8.4.47
+      postcss: 8.4.48
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.2:
@@ -7365,13 +7365,13 @@ snapshots:
     dependencies:
       import-fresh: 2.0.0
       is-directory: 0.3.1
-      js-yaml: 3.14.1
+      js-yaml: 3.14.2
       parse-json: 4.0.0
 
   cosmiconfig@8.2.0:
     dependencies:
       import-fresh: 3.3.0
-      js-yaml: 4.1.0
+      js-yaml: 4.1.1
       parse-json: 5.2.0
       path-type: 4.0.0
 
@@ -8038,7 +8038,7 @@ snapshots:
       import-fresh: 3.3.0
       imurmurhash: 0.1.4
       is-glob: 4.0.1
-      js-yaml: 3.14.1
+      js-yaml: 3.14.2
       json-stable-stringify-without-jsonify: 1.0.1
       levn: 0.4.1
       lodash: 4.17.21
@@ -8764,11 +8764,11 @@ snapshots:
     dependencies:
       through2: 2.0.5
 
-  gulp-postcss@9.0.0(postcss@8.4.47):
+  gulp-postcss@9.0.0(postcss@8.4.48):
     dependencies:
       fancy-log: 1.3.3
       plugin-error: 1.0.1
-      postcss: 8.4.47
+      postcss: 8.4.48
       postcss-load-config: 2.1.2
       vinyl-sourcemaps-apply: 0.2.1
 
@@ -9363,12 +9363,12 @@ snapshots:
 
   js-tokens@4.0.0: {}
 
-  js-yaml@3.14.1:
+  js-yaml@3.14.2:
     dependencies:
       argparse: 1.0.10
       esprima: 4.0.1
 
-  js-yaml@4.1.0:
+  js-yaml@4.1.1:
     dependencies:
       argparse: 2.0.1
 
@@ -10371,9 +10371,9 @@ snapshots:
     dependencies:
       postcss: 7.0.39
 
-  postcss-import@14.0.0(postcss@8.4.47):
+  postcss-import@14.0.0(postcss@8.4.48):
     dependencies:
-      postcss: 8.4.47
+      postcss: 8.4.48
       postcss-value-parser: 4.1.0
       read-cache: 1.0.0
       resolve: 1.19.0
@@ -10427,9 +10427,9 @@ snapshots:
       postcss: 7.0.39
       postcss-selector-parser: 3.1.2
 
-  postcss-nested@5.0.3(postcss@8.4.47):
+  postcss-nested@5.0.3(postcss@8.4.48):
     dependencies:
-      postcss: 8.4.47
+      postcss: 8.4.48
       postcss-selector-parser: 6.0.4
 
   postcss-normalize-charset@4.0.1:
@@ -10508,9 +10508,9 @@ snapshots:
 
   postcss-resolve-nested-selector@0.1.1: {}
 
-  postcss-safe-parser@6.0.0(postcss@8.4.47):
+  postcss-safe-parser@6.0.0(postcss@8.4.48):
     dependencies:
-      postcss: 8.4.47
+      postcss: 8.4.48
 
   postcss-selector-parser@3.1.2:
     dependencies:
@@ -10554,7 +10554,7 @@ snapshots:
       picocolors: 0.2.1
       source-map: 0.6.1
 
-  postcss@8.4.47:
+  postcss@8.4.48:
     dependencies:
       nanoid: 3.3.11
       picocolors: 1.1.1
@@ -11435,9 +11435,9 @@ snapshots:
       micromatch: 4.0.5
       normalize-path: 3.0.0
       picocolors: 1.0.0
-      postcss: 8.4.47
+      postcss: 8.4.48
       postcss-resolve-nested-selector: 0.1.1
-      postcss-safe-parser: 6.0.0(postcss@8.4.47)
+      postcss-safe-parser: 6.0.0(postcss@8.4.48)
       postcss-selector-parser: 6.0.13
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
@@ -11487,7 +11487,7 @@ snapshots:
       cssom: 0.3.8
       dateformat: 3.0.3
       glob: 7.1.6
-      js-yaml: 3.14.1
+      js-yaml: 3.14.2
       lodash: 4.17.21
       lodash.pluck: 3.1.2
       mkdirp: 0.5.5
@@ -11515,7 +11515,7 @@ snapshots:
       css-select-base-adapter: 0.1.1
       css-tree: 1.0.0-alpha.37
       csso: 4.2.0
-      js-yaml: 3.14.1
+      js-yaml: 3.14.2
       mkdirp: 0.5.5
       object.values: 1.1.2
       sax: 1.2.4
