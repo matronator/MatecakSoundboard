@@ -35,7 +35,7 @@ importers:
         version: 7.12.10(@babel/core@7.12.10)
       autoprefixer:
         specifier: ^10.2.0
-        version: 10.2.4(postcss@8.5.8)
+        version: 10.2.4(postcss@8.5.10)
       babel-plugin-transform-class-properties:
         specifier: ^6.24.1
         version: 6.24.1
@@ -83,7 +83,7 @@ importers:
         version: 1.0.1
       gulp-postcss:
         specifier: ^9.0.0
-        version: 9.0.0(postcss@8.5.8)
+        version: 9.0.0(postcss@8.5.10)
       gulp-rev:
         specifier: ^9.0.0
         version: 9.0.0
@@ -103,17 +103,17 @@ importers:
         specifier: ^1.4.0
         version: 1.4.0
       postcss:
-        specifier: ^8.5.8
-        version: 8.5.8
+        specifier: ^8.5.10
+        version: 8.5.10
       postcss-custom-media:
         specifier: ^7.0.8
         version: 7.0.8
       postcss-import:
         specifier: ^14.0.0
-        version: 14.0.0(postcss@8.5.8)
+        version: 14.0.0(postcss@8.5.10)
       postcss-nested:
         specifier: ^5.0.3
-        version: 5.0.3(postcss@8.5.8)
+        version: 5.0.3(postcss@8.5.10)
       prettier:
         specifier: ^2.2.1
         version: 2.2.1
@@ -3620,8 +3620,8 @@ packages:
   nan@2.19.0:
     resolution: {integrity: sha512-nO1xXxfh/RWNxfd/XPfbIfFk5vgLsAxUR9y5O0cHMJu/AW9U95JLXqthYHjEp+8gQ5p96K9jUp8nbVOxCdRbtw==}
 
-  nanoid@3.3.11:
-    resolution: {integrity: sha512-N8SpfPUnUp1bK+PMYW8qSWdl9U+wwNWI4QKxOYDy9JAro3WMX7p2OeVRF9v+347pnakNevPmiHhNmZ2HbFA76w==}
+  nanoid@3.3.12:
+    resolution: {integrity: sha512-ZB9RH/39qpq5Vu6Y+NmUaFhQR6pp+M2Xt76XBnEwDaGcVAqhlvxrl3B2bKS5D3NH3QR76v3aSrKaF/Kiy7lEtQ==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -4221,8 +4221,8 @@ packages:
     resolution: {integrity: sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA==}
     engines: {node: '>=6.0.0'}
 
-  postcss@8.5.8:
-    resolution: {integrity: sha512-OW/rX8O/jXnm82Ey1k44pObPtdblfiuWnrd8X7GJ7emImCOstunGbXUpp7HdBrFQX6rJzn3sPT397Wp5aCwCHg==}
+  postcss@8.5.10:
+    resolution: {integrity: sha512-pMMHxBOZKFU6HgAZ4eyGnwXF/EvPGGqUr0MnZ5+99485wwW41kW91A4LOGxSHhgugZmSChL5AlElNdwlNgcnLQ==}
     engines: {node: ^10 || ^12 || >=14}
 
   prelude-ls@1.2.1:
@@ -5324,7 +5324,7 @@ packages:
 
   uuid@3.4.0:
     resolution: {integrity: sha512-HjSDRw6gZE5JMggctHBcjVak08+KEVhSIiDzFnT9S9aegmp85S/bReBVTb4QTFaRNptJ9kuYaNhnbNEOkbKb/A==}
-    deprecated: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+    deprecated: uuid@10 and below is no longer supported.  For ESM codebases, update to uuid@latest.  For CommonJS codebases, use uuid@11 (but be aware this version will likely be deprecated in 2028).
     hasBin: true
 
   v8-compile-cache@2.2.0:
@@ -6551,14 +6551,14 @@ snapshots:
 
   atob@2.1.2: {}
 
-  autoprefixer@10.2.4(postcss@8.5.8):
+  autoprefixer@10.2.4(postcss@8.5.10):
     dependencies:
       browserslist: 4.25.1
       caniuse-lite: 1.0.30001726
       colorette: 1.2.1
       fraction.js: 4.0.13
       normalize-range: 0.1.2
-      postcss: 8.5.8
+      postcss: 8.5.10
       postcss-value-parser: 4.2.0
 
   available-typed-arrays@1.0.2:
@@ -8769,11 +8769,11 @@ snapshots:
     dependencies:
       through2: 2.0.5
 
-  gulp-postcss@9.0.0(postcss@8.5.8):
+  gulp-postcss@9.0.0(postcss@8.5.10):
     dependencies:
       fancy-log: 1.3.3
       plugin-error: 1.0.1
-      postcss: 8.5.8
+      postcss: 8.5.10
       postcss-load-config: 2.1.2
       vinyl-sourcemaps-apply: 0.2.1
 
@@ -9895,7 +9895,7 @@ snapshots:
   nan@2.19.0:
     optional: true
 
-  nanoid@3.3.11: {}
+  nanoid@3.3.12: {}
 
   nanomatch@1.2.13:
     dependencies:
@@ -10376,9 +10376,9 @@ snapshots:
     dependencies:
       postcss: 7.0.39
 
-  postcss-import@14.0.0(postcss@8.5.8):
+  postcss-import@14.0.0(postcss@8.5.10):
     dependencies:
-      postcss: 8.5.8
+      postcss: 8.5.10
       postcss-value-parser: 4.1.0
       read-cache: 1.0.0
       resolve: 1.19.0
@@ -10432,9 +10432,9 @@ snapshots:
       postcss: 7.0.39
       postcss-selector-parser: 3.1.2
 
-  postcss-nested@5.0.3(postcss@8.5.8):
+  postcss-nested@5.0.3(postcss@8.5.10):
     dependencies:
-      postcss: 8.5.8
+      postcss: 8.5.10
       postcss-selector-parser: 6.0.4
 
   postcss-normalize-charset@4.0.1:
@@ -10513,9 +10513,9 @@ snapshots:
 
   postcss-resolve-nested-selector@0.1.1: {}
 
-  postcss-safe-parser@6.0.0(postcss@8.5.8):
+  postcss-safe-parser@6.0.0(postcss@8.5.10):
     dependencies:
-      postcss: 8.5.8
+      postcss: 8.5.10
 
   postcss-selector-parser@3.1.2:
     dependencies:
@@ -10559,9 +10559,9 @@ snapshots:
       picocolors: 0.2.1
       source-map: 0.6.1
 
-  postcss@8.5.8:
+  postcss@8.5.10:
     dependencies:
-      nanoid: 3.3.11
+      nanoid: 3.3.12
       picocolors: 1.1.1
       source-map-js: 1.2.1
 
@@ -11440,9 +11440,9 @@ snapshots:
       micromatch: 4.0.5
       normalize-path: 3.0.0
       picocolors: 1.0.0
-      postcss: 8.5.8
+      postcss: 8.5.10
       postcss-resolve-nested-selector: 0.1.1
-      postcss-safe-parser: 6.0.0(postcss@8.5.8)
+      postcss-safe-parser: 6.0.0(postcss@8.5.10)
       postcss-selector-parser: 6.0.13
       postcss-value-parser: 4.2.0
       resolve-from: 5.0.0
